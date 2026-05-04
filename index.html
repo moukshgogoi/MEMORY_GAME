@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Set</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<h1>Memory Game</h1>
+<body class="landing-page container">
+
+<div class="landing-shell">
+  
+
+  <img class="landing-logo" src="images/logo.jpg" alt="Memory Game logo" />
+
+  
+
+  <div class="menu">
+    <label class="sr-only" for="setSelect">Choose a set</label>
+    <select id="setSelect" aria-label="Choose a set">
+      <option value="">Select a Set</option>
+      <option value="1">Set 1</option>
+      <option value="2">Set 2</option>
+      <option value="3">Set 3</option>
+      <option value="4">Set 4</option>
+      <option value="5">Set 5</option>
+    </select>
+    <button id="playButton" type="button">Play</button>
+  </div>
+
+
+  
+</div>
+
+<script>
+function goToSet(set) {
+  window.location.href = `game.html?set=${set}`;
+}
+
+const setSelect = document.getElementById("setSelect");
+const playButton = document.getElementById("playButton");
+
+playButton.addEventListener("click", () => {
+  if (!setSelect.value) {
+    setSelect.focus();
+    return;
+  }
+
+  goToSet(setSelect.value);
+});
+</script>
+
+</body>
+</html>
