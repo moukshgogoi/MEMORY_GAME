@@ -7,10 +7,10 @@ function loadImages(set) {
   const basePath = `images/set${set}/`;
   const imageCountsBySet = {
     "1": 10,
-    "2": 16,
+    "2": 19,
     "3": 10,
     "4": 10,
-    "5": 11,
+    "5": 12,
   };
   const imageCount = imageCountsBySet[set];
 
