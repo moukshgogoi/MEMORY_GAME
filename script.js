@@ -5,21 +5,22 @@ function getSetFromURL() {
 
 function loadImages(set) {
   const basePath = `images/set${set}/`;
+  const imageCountsBySet = {
+    "1": 10,
+    "2": 16,
+    "3": 10,
+    "4": 10,
+    "5": 11,
+  };
+  const imageCount = imageCountsBySet[set];
 
-  return [
-    basePath + "img1.jpg",
-    basePath + "img2.jpg",
-    basePath + "img3.jpg",
-    basePath + "img4.jpg",
-    basePath + "img5.jpg",
-    basePath + "img6.jpg",
-    basePath + "img7.jpg",
-    basePath + "img8.jpg",
-    basePath + "img9.jpg",
-    basePath + "img10.jpg",
-    basePath + "img11.jpg"
-    
-  ];
+  if (!imageCount) {
+    return [];
+  }
+
+  return Array.from({ length: imageCount }, (_, index) => {
+    return `${basePath}img${index + 1}.jpg`;
+  });
 }
 
 const currentSet = getSetFromURL();
@@ -53,6 +54,12 @@ if (setNumberEl) {
 function createBoard() {
   board.innerHTML = ""; // clear previous
 
+  if (!images.length) {
+    winMessage.textContent = "No images found for this set.";
+    winMessage.classList.remove("hidden");
+    return;
+  }
+
   const cardsArray = generateCards();
 
   cardsArray.forEach((imgSrc) => {
@@ -64,7 +71,7 @@ function createBoard() {
       <div class="card-inner">
         <div class="card-front"></div>
         <div class="card-back">
-          <img src="${imgSrc}" />
+          <img src="${imgSrc}" alt="Memory card image" />
         </div>
       </div>
     `;
